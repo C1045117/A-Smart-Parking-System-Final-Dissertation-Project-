@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Parking Spot {{ label }}
+{% endblock %}
+
+{% block content %}
+    <h1>Parking Spot {{ label }}</h1>
+    <img src="{{ image }}" alt="Processed Image" style="width: 200px; height: auto;">
+    <div style="margin-left: 20px;">
+        <div style="width: 50px; height: 50px; background-color: {{ availability }}; border: 2px solid black; border-radius: 50%;"></div>
+        <p style="text-align: center;">{% if availability == 'Green' %}Available{% else %}Not Available{% endif %}</p>
+        {% if availability == 'Green' %}
+            <form method="post" action="{% url 'create_booking' label %}">
+                {% csrf_token %}
+                <button type="submit" style="display: block; width: 100%; padding: 10px; margin-top: 10px; background-color: blue; color: white; border: none; cursor: pointer;">Reserve</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Parking Reservation
+{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center;">Parking Reservation System</h1>
+    <h2 style="text-align: center;">Available Parking Spots:</h2>
+    <style>
+        .parking-spot {
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            margin: 5px;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+        }
+        .available {
+            background-color: green;
+        }
+        .not-available {
+            background-color: red;
+        }
+        .parking-lot {
+            text-align: center;
+        }
+    </style>
+    <div class="parking-lot">
+        {% for spot, status in parking_spots.items %}
+            <a href="{% url 'parking_spot' spot %}">
+                <div class="parking-spot {% if status == 'Green' %}available{% else %}not-available{% endif %}">{{ spot }}</div>
+            </a>
+            {% if forloop.counter|divisibleby:5 %}
+                <br>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function bookSpot(spot) {
+            document.getElementById("modal-text").innerText = "You clicked on spot " + spot;
+            modal.style.display = "block";
+        }
+    </script>
+{% endblock %}

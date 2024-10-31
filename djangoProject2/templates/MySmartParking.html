@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1>Welcome to MySmartParking</h1>
+        <p>MySmartParking is a smart solution for parking reservations. With our system, you can easily book a parking spot in advance, saving you time and hassle. Here's what you can do with MySmartParking:</p>
+        <ul>
+            <li><strong>View available parking spots:</strong> Our system provides a real-time view of available parking spots. You can easily see which spots are free and choose the one that's most convenient for you.</li>
+            <li><strong>Reserve a parking spot:</strong> Once you've found a spot you like, you can reserve it with just a few clicks. We'll hold the spot for you until you arrive.</li>
+            <li><strong>Manage your bookings:</strong> You can view all your current and past bookings, cancel a booking, or change your reservation details.</li>
+        </ul>
+        <p>Ready to get started? <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a> now!</p>
+    </div>
+{% endblock %}

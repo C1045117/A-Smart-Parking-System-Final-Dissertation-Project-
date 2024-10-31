@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Confirmed Bookings</h1>
+    {% for booking in bookings %}
+        <div>
+            <h3>Order Number: {{ booking.order_number }}</h3>
+            <p>Parking Spot: {{ booking.parking_spot.parking_slot_label }}</p>
+            <p>Booking Time: {{ booking.booking_time }}</p>
+        </div>
+    {% empty %}
+        <p>You have no confirmed bookings.</p>
+    {% endfor %}
+{% endblock %}
